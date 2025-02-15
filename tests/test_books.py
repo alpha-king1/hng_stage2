@@ -43,6 +43,12 @@ def test_update_book():
     data = response.json()
     assert data["title"] == "The Hobbit: An Unexpected Journey"
 
+def test_get_book():
+    response = client.get("/books/3")
+    assert response.status_code == 200
+
+    response = client.get("/books/300")
+    assert response.status_code == 404
 
 def test_delete_book():
     response = client.delete("/books/3")
